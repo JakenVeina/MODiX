@@ -12,6 +12,9 @@ namespace Modix.Business.Diagnostics
                     .Bind(configuration.GetSection("MODiX").GetSection("Business").GetSection("Diagnostics"))
                     .ValidateDataAnnotations()
                     .ValidateOnStartup())
+                .AddBehavior<GatewayHeartbeatIntervalListeningBehavior>()
+                .AddSingleton<DiagnosticsManager>()
+                .AddSingleton<IDiagnosticsManager>(serviceProvider => serviceProvider.GetRequiredService<DiagnosticsManager>())
                 .AddScoped<IDiagnosticsService, DiagnosticsService>();
     }
 }

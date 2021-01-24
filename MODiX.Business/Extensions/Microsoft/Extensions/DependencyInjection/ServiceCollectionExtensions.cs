@@ -13,6 +13,10 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        public static IServiceCollection AddBehavior<T>(this IServiceCollection services)
+                where T : BehaviorBase
+            => services.AddSingleton<IHostedService, T>();
+
         public static IServiceCollection AddStartupAction<T>(this IServiceCollection services)
                 where T : StartupActionBase
             => services.AddTransient<IHostedService, T>();

@@ -7,9 +7,7 @@
             => new DelegateDisposable(onDisposing);
 
         public DelegateDisposable(Action<DelegateDisposable> onDisposing)
-        {
-            _onDisposing = onDisposing;
-        }
+            => _onDisposing = onDisposing;
 
         public void Dispose()
         {
@@ -20,7 +18,8 @@
             }
         }
 
+        private readonly Action<DelegateDisposable> _onDisposing;
+
         private bool _hasDisposaed;
-        private Action<DelegateDisposable> _onDisposing;
     }
 }
